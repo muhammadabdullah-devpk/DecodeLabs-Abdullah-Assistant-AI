@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In — Abdullah AI{% endblock %}
+
+{% block content %}
+<section class="section auth-section">
+    <div class="auth-container">
+        <div class="glass auth-card animate-slide-up">
+            <div class="auth-header text-center">
+                <h2>Welcome Back</h2>
+                <p class="text-muted">Sign in to resume your active AI conversations.</p>
+            </div>
+            
+            <form action="{{ url_for('auth.login') }}" method="POST" class="auth-form">
+                <div class="input-group">
+                    <label for="email"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required class="glass">
+                </div>
+
+                <div class="input-group">
+                    <label for="password"><i class="fa-solid fa-lock"></i> Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required class="glass">
+                </div>
+
+                <div class="auth-actions">
+                    <label class="remember-me checkbox-label">
+                        <input type="checkbox" name="remember">
+                        <span class="custom-checkbox"></span>
+                        Remember Me
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full btn-lg">Sign In</button>
+            </form>
+
+            <div class="auth-footer text-center">
+                <p>New to Abdullah AI? <a href="/register" class="accent-link">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

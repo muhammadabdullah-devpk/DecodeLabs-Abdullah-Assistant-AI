@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% block title %}Chat Console — Abdullah AI{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/chat.css">
+<!-- Markdown Parser and HighlightJS for Code Rendering in Frontend -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div class="chat-workspace">
+    
+    <!-- Left Sidebar Column: History & Directory -->
+    <aside class="chat-sidebar glass">
+        <div class="sidebar-header">
+            <button id="new-chat-btn" class="btn btn-primary btn-full">
+                <i class="fa-solid fa-plus"></i> New Chat
+            </button>
+            <div class="search-wrap mt-2">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="chat-search" placeholder="Search conversations..." class="glass search-input">
+            </div>
+        </div>
+
+        <!-- Scrollable Conversation History Directories -->
+        <div class="sidebar-history-wrapper" id="conversation-history-list">
+            <!-- Populated dynamically via JS -->
+            <div class="history-section-loader text-center py-4">
+                <i class="fa-solid fa-spinner fa-spin"></i> Loading chats...
+            </div>
+        </div>
+
+        <!-- User Quick-Settings Footer Panel -->
+        <div class="sidebar-footer">
+            <div class="current-user-box">
+                <img src="{{ current_user.avatar_url or '/static/img/avatar-default.png' }}" alt="Avatar" class="avatar-md">
+                <div class="user-details">
+                    <span class="username">{{ current_user.username }}</span>
+                    <span class="email">{{ current_user.email }}</span>
+                </div>
+            </div>
+            <div class="footer-icons-row mt-2">
+                <a href="/settings" class="icon-link" title="SaaS Settings"><i class="fa-solid fa-sliders"></i></a>
+                <a href="/profile" class="icon-link" title="Profile Details"><i class="fa-solid fa-user-gear"></i></a>
+                <a href="/logout" class="icon-link text-danger" title="Sign Out"><i class="fa-solid fa-power-off"></i></a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Workspace Console Area -->
+    <section class="chat-main-area">
+        <!-- Floating State Indicator (API Mode vs Fallback Mode) -->
+        <div class="api-mode-alert glass" id="model-status-indicator">
+            <span class="indicator-dot green"></span>
+            <span class="indicator-text">Loading engine...</span>
+        </div>
+
+        <!-- Chat Stream Wrapper scroll container -->
+        <div class="chat-history-container" id="chat-messages-scroll-box">
+            
+            <!-- Default Welcome Display (Empty conversations state) -->
+            <div class="welcome-screen-wrap" id="empty-state-welcome">
+                <div class="welcome-header text-center">
+                    <i class="fa-solid fa-robot welcome-icon"></i>
+                    <h2>Welcome to Abdullah AI</h2>
+                    <p class="text-muted">Your Personal AI Assistant — Powered by Google Gemini</p>
+                </div>
+                
+                <div class="welcome-prompts-grid">
+                    <div class="prompt-suggestion-card glass" data-prompt="Explain the difference between synchronous and asynchronous code.">
+                        <h5>💻 Coding Helper</h5>
+                        <p>"Explain the difference between sync and async code."</p>
+                    </div>
+                    
+                    <div class="prompt-suggestion-card glass" data-prompt="Solve this math equation: 125 * (4 + 6) / 5">
+                        <h5>➗ Math Solver</h5>
+                        <p>"Solve this equation: 125 * (4 + 6) / 5"</p>
+                    </div>
+
+                    <div class="prompt-suggestion-card glass" data-prompt="Write a professional resume summary for an AI Backend Engineer.">
+                        <h5>📄 Resume Builder</h5>
+                        <p>"Write a resume summary for an AI Backend Engineer."</p>
+                    </div>
+
+                    <div class="prompt-suggestion-card glass" data-prompt="Tell me a programming joke.">
+                        <h5>😄 Fun Talk</h5>
+                        <p>"Tell me a programming joke."</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dynamic Chat Bubble Log -->
+            <div class="messages-list-wrapper" id="conversation-message-log">
+                <!-- Message blocks injected dynamically by JS -->
+            </div>
+
+            <!-- Streaming typing animation dot element -->
+            <div class="typing-indicator-wrapper hidden" id="typing-indicator">
+                <div class="typing-bubble glass">
+                    <span class="dot animate-bounce"></span>
+                    <span class="dot animate-bounce-delayed"></span>
+                    <span class="dot animate-bounce-late"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stop / Regenerate response buttons -->
+        <div class="stream-controls hidden" id="stream-cancel-controls">
+            <button id="stop-generation-btn" class="btn btn-outline glass btn-sm"><i class="fa-solid fa-hand"></i> Stop Generating</button>
+        </div>
+
+        <!-- Chat Form Input Area -->
+        <div class="chat-input-panel glass">
+            <!-- Drag and drop upload zone representation -->
+            <div class="chat-drag-overlay" id="drag-drop-zone">
+                <div class="drag-contents">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <p>Drag & Drop files or images here to upload</p>
+                </div>
+            </div>
+
+            <form id="chat-input-form" class="chat-form">
+                <!-- Textarea input box -->
+                <div class="input-controls-row">
+                    <!-- File upload hidden input -->
+                    <label class="btn-icon file-upload-label" title="Attach file (mocked)">
+                        <input type="file" id="file-selector" class="hidden-input" accept="image/*,application/pdf,text/plain">
+                        <i class="fa-solid fa-paperclip"></i>
+                    </label>
+                    
+                    <textarea id="chat-prompt-input" rows="1" placeholder="Send a message (Press Enter)..." required></textarea>
+                    
+                    <!-- Voice Speech Input Button -->
+                    <button type="button" id="voice-input-btn" class="btn-icon" title="Voice Dictation">
+                        <i class="fa-solid fa-microphone"></i>
+                    </button>
+
+                    <!-- Text-to-speech feedback read aloud setting -->
+                    <button type="button" id="tts-feedback-btn" class="btn-icon" title="Text-to-Speech Output (Off)">
+                        <i class="fa-solid fa-volume-xmark"></i>
+                    </button>
+                    
+                    <button type="submit" id="send-prompt-btn" class="btn btn-primary btn-round">
+                        <i class="fa-solid fa-arrow-up"></i>
+                    </button>
+                </div>
+                
+                <div class="form-footer-meta">
+                    <span>Active LLM: <strong id="meta-model-name">gemini-2.5-flash</strong></span>
+                    <span class="separator-bullet">•</span>
+                    <a href="#" id="export-chat-btn" title="Export chat log"><i class="fa-solid fa-file-export"></i> Export Chat</a>
+                    <span class="separator-bullet">•</span>
+                    <a href="#" id="clear-chat-btn" class="text-danger"><i class="fa-solid fa-trash-can"></i> Clear History</a>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Mount variables for chat.js script -->
+<script>
+    const ACTIVE_CONVERSATION_ID = "{{ active_conv_id or '' }}";
+    const CURRENT_USER_AVATAR = "{{ current_user.avatar_url or '/static/img/avatar-default.png' }}";
+    const CURRENT_USER_NAME = "{{ current_user.username }}";
+</script>
+<script src="/static/js/voice.js"></script>
+<script src="/static/js/chat.js"></script>
+{% endblock %}

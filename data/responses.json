@@ -1,0 +1,101 @@
+{
+  "responses": {
+    "greeting": [
+      "Hey {name}! Great to see you. How can I help? 😊",
+      "Hello {name}! I'm Abdullah Assistant AI — ready to assist you!",
+      "Hi {name}! Hope you're having an amazing day. What's on your mind?",
+      "Hey there{name}! What can I do for you today? 🚀",
+      "Welcome back{name}! I'm all ears. Go ahead!"
+    ],
+    "farewell": [
+      "Goodbye! It was great chatting with you. See you next time! 👋",
+      "Take care! Don't hesitate to come back if you need help. Bye! 😊",
+      "See you around! Stay awesome! 🌟",
+      "Farewell! It was a pleasure. Have a wonderful day! 🎉",
+      "Bye bye! Remember, I'm always here when you need me. 👋"
+    ],
+    "name_capture": [
+      "Nice to meet you, {name}! I'll remember your name. How can I help you today? 😊",
+      "Great name, {name}! I've got that noted. What can I do for you?",
+      "Hello {name}! Wonderful to meet you. Feel free to ask me anything!",
+      "Got it! I'll call you {name} from now on. How can I assist? 🙌"
+    ],
+    "ask_name": [
+      "Your name is {name}! I remembered it as soon as you told me. 😄",
+      "Of course! You told me your name is {name}. I never forget! 🧠",
+      "You're {name}! I have a good memory, don't I? 😊"
+    ],
+    "ask_name_unknown": [
+      "Hmm, I don't know your name yet! You can tell me by saying 'My name is ...' 😊",
+      "I don't have your name on record yet. Share it with me — say 'My name is ...'!"
+    ],
+    "bot_identity": [
+      "I'm Abdullah Assistant AI — a professional AI SaaS chatbot console built with Python, Flask, and Google Gemini! 🤖",
+      "They call me Abdullah Assistant AI! I'm an intelligent chatbot ready to help you with anything. 🚀",
+      "I am Abdullah Assistant AI, your friendly AI assistant. I use Google Gemini API to chat with you! 🧠"
+    ],
+    "how_are_you": [
+      "I'm functioning at 100%! All my logic circuits are firing perfectly. How about you? 😄",
+      "Doing great, thanks for asking! I'm always energised to help. What do you need? ⚡",
+      "Never better! My intent engine is running smoothly. What can I do for you? 🤖",
+      "Top of the world! Well... top of the console at least. How can I help? 😂"
+    ],
+    "capabilities": [
+      "Here's what I can do for you:\n\n  🗣️  Greet you and remember your name\n  ⏰  Tell you the current time & date\n  😄  Tell jokes to cheer you up\n  💡  Share motivational quotes\n  ➗  Solve math expressions (e.g. 5 + 3 * 2)\n  🤖  Answer questions about AI & Python\n  💬  Have a friendly small talk\n\n  Just type naturally and I'll do my best! 😊",
+      "I've got quite a few tricks:\n\n  ✅  Smart intent detection\n  ✅  Session memory (I remember your name!)\n  ✅  Jokes & motivational quotes\n  ✅  Live time & date\n  ✅  Math solver\n  ✅  AI & Python FAQs\n\n  Try asking me anything! 🚀"
+    ],
+    "faq_python": [
+      "🐍 Python is a high-level, general-purpose programming language created by Guido van Rossum in 1991. It's known for:\n\n  ✅  Clean, readable syntax\n  ✅  Massive ecosystem (libraries & frameworks)\n  ✅  Versatility (web, AI, data science, automation)\n  ✅  Beginner-friendly yet enterprise-powerful\n\n  This chatbot is built with Python! 🚀",
+      "Python is one of the most popular programming languages in the world! It's used in web development (Django, Flask), data science (pandas, NumPy), machine learning (TensorFlow, PyTorch), and of course — chatbots! 🐍"
+    ],
+    "faq_ai": [
+      "🤖 Artificial Intelligence (AI) is the simulation of human intelligence by computer systems. It includes Machine Learning (learning from data), Computer Vision (understanding images), and NLP (understanding text). I leverage Google Gemini for AI responses!",
+      "AI (Artificial Intelligence) is a broad field of computer science focused on building smart machines capable of performing tasks that typically require human intelligence — like understanding language, recognising patterns, and making decisions. 🤖"
+    ],
+    "faq_rule_based": [
+      "🔧 I support both advanced AI (via Google Gemini) and intelligent fallback rules! If the API is offline, my local regex matching, IntentHandler, and ResponseGenerator take over to answer you immediately. 💪",
+      "Rule-based AI works by matching input to predefined patterns and returning structured responses. If Gemini is offline, I use structured fallback logic so you always get a response! 🔧"
+    ],
+    "faq_decodelabs": [
+      "🏢 DecodeLabs is the platform behind the original chatbot assignment. This project represents the DecodeLabs Project, enhanced & developed into Abdullah Assistant AI by Muhammad Abdullah. 🚀",
+      "This project is based on the DecodeLabs Project chatbot assignment, now fully enhanced and developed as a premium AI SaaS platform by Muhammad Abdullah! 💻"
+    ],
+    "thank_you": [
+      "You're welcome! Always happy to help. 😊",
+      "Anytime! That's what I'm here for. 🙌",
+      "My pleasure! Feel free to ask anything else. ✨",
+      "Glad I could help! You're awesome. 🌟",
+      "No problem at all! Keep the questions coming. 🚀"
+    ],
+    "age": [
+      "I was born to assist you! In version terms, I am Abdullah Assistant AI v3.0.",
+      "Consider me forever young and always ready to learn! 🤖",
+      "I'm as old as the code that runs me — now fully upgraded to Abdullah Assistant AI v3.0! 🚀"
+    ],
+    "weather": [
+      "I wish I could check the weather for you, but I don't have internet access! 🌤️ Try asking Google or your local weather app.",
+      "Unfortunately I can't fetch live weather data — no internet connection. But I hope it's sunny wherever you are! ☀️"
+    ],
+    "creator": [
+      "I am based on the DecodeLabs Project chatbot assignment, enhanced & developed by Muhammad Abdullah. 🏗️",
+      "My developer is Muhammad Abdullah, who enhanced and developed this platform from the original DecodeLabs Project chatbot assignment. 🤖"
+    ],
+    "time": [
+      "The current time is {time}. ⏰",
+      "It is exactly {time}.",
+      "According to my clock, it's {time}! ⏱️"
+    ],
+    "date": [
+      "Today's date is {date}. 📅",
+      "It's {date}.",
+      "Today is {date}! 📆"
+    ],
+    "fallback": [
+      "Hmm, I didn't quite catch that. 🤔 Try saying 'help' to see what I can do!",
+      "I'm not sure I understand. Could you rephrase that? Or type 'help' for a list of things I can help with.",
+      "That's a bit outside my current knowledge. Type 'help' to see my capabilities! 🙂",
+      "Interesting! But I'm not trained for that yet. Try 'help' to explore what I can do. 😊",
+      "I'll need to pass on that one! Type 'help' to discover my features. 🤖"
+    ]
+  }
+}

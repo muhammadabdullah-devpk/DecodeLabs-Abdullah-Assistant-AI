@@ -1,0 +1,189 @@
+{
+  "intents": [
+    {
+      "name": "greeting",
+      "patterns": [
+        "^(hi|hello|hey|hiya|howdy|sup|what'?s up|yo)\\b",
+        "^(salam|assalamualaikum|aoa|walaikum|asslam)\\b",
+        "good (morning|afternoon|evening|night)"
+      ]
+    },
+    {
+      "name": "farewell",
+      "patterns": [
+        "\\b(bye|goodbye|good bye|see you|see ya|later|take care|quit|exit|stop|ciao|adios)\\b"
+      ]
+    },
+    {
+      "name": "name_capture",
+      "patterns": [
+        "my name is ([a-zA-Z ]+)",
+        "i am ([a-zA-Z ]+)",
+        "i'?m ([a-zA-Z ]+)",
+        "call me ([a-zA-Z ]+)",
+        "you can call me ([a-zA-Z ]+)"
+      ]
+    },
+    {
+      "name": "ask_name",
+      "patterns": [
+        "what('?s| is) my name",
+        "do you (know|remember) my name",
+        "remember my name"
+      ]
+    },
+    {
+      "name": "bot_identity",
+      "patterns": [
+        "what('?s| is) your name",
+        "who are you",
+        "are you (a )?bot",
+        "are you (an )?ai",
+        "are you (a )?robot",
+        "introduce yourself",
+        "tell me about yourself"
+      ]
+    },
+    {
+      "name": "how_are_you",
+      "patterns": [
+        "how are you",
+        "how('?re| are) you doing",
+        "are you (ok|okay|good|fine|alright)",
+        "how do you feel",
+        "how is it going",
+        "what'?s up"
+      ]
+    },
+    {
+      "name": "capabilities",
+      "patterns": [
+        "what can you do",
+        "what are your (features|capabilities|skills|abilities|functions)",
+        "help",
+        "commands",
+        "show (me )?(the )?menu",
+        "how (do i|to) use (you|this|decodebot)"
+      ]
+    },
+    {
+      "name": "time",
+      "patterns": [
+        "what('?s| is) the (current )?time",
+        "tell me the time",
+        "current time",
+        "what time is it"
+      ]
+    },
+    {
+      "name": "date",
+      "patterns": [
+        "what('?s| is) (today'?s? )?(date|day)",
+        "what (day|date) is (it|today)",
+        "tell me the date",
+        "today'?s date",
+        "current date"
+      ]
+    },
+    {
+      "name": "joke",
+      "patterns": [
+        "tell me a joke",
+        "say (something |a )?funny",
+        "make me (laugh|smile)",
+        "joke",
+        "give me a joke",
+        "do you know any jokes"
+      ]
+    },
+    {
+      "name": "quote",
+      "patterns": [
+        "give me a (quote|motivation|inspiration)",
+        "say (something |a )?(inspiring|motivational|wise)",
+        "inspire me",
+        "motivate me",
+        "quote",
+        "wisdom"
+      ]
+    },
+    {
+      "name": "math",
+      "patterns": [
+        "[0-9]+\\s*[\\+\\-\\*\\/\\%\\^\\*\\*]\\s*[0-9]",
+        "what is [0-9]",
+        "calculate",
+        "solve",
+        "compute"
+      ]
+    },
+    {
+      "name": "faq_python",
+      "patterns": [
+        "what is python",
+        "tell me about python",
+        "python programming"
+      ]
+    },
+    {
+      "name": "faq_ai",
+      "patterns": [
+        "what is (ai|artificial intelligence)",
+        "tell me about (ai|artificial intelligence)",
+        "what is machine learning",
+        "explain (ai|ml|machine learning)"
+      ]
+    },
+    {
+      "name": "faq_rule_based",
+      "patterns": [
+        "what is rule.?based (ai|chatbot)",
+        "how does (this|decodebot) work",
+        "how are you built",
+        "what technology"
+      ]
+    },
+    {
+      "name": "faq_decodelabs",
+      "patterns": [
+        "what is decodelabs",
+        "tell me about decodelabs",
+        "decodelabs"
+      ]
+    },
+    {
+      "name": "thank_you",
+      "patterns": [
+        "thank(s| you)",
+        "thx",
+        "ty",
+        "appreciate it",
+        "you('?re| are) (great|awesome|helpful|amazing)"
+      ]
+    },
+    {
+      "name": "age",
+      "patterns": [
+        "how old are you",
+        "what'?s your age",
+        "when were you (born|created|made)"
+      ]
+    },
+    {
+      "name": "weather",
+      "patterns": [
+        "what'?s the weather",
+        "weather (today|now|forecast)",
+        "is it (raining|sunny|cloudy|hot|cold)"
+      ]
+    },
+    {
+      "name": "creator",
+      "patterns": [
+        "who (made|created|built|developed) you",
+        "who is your (creator|developer|maker|author)",
+        "who (programmed|coded) you"
+      ]
+    }
+  ]
+}

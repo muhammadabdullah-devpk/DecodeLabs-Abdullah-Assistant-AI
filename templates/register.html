@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Create Account — Abdullah AI{% endblock %}
+
+{% block content %}
+<section class="section auth-section">
+    <div class="auth-container">
+        <div class="glass auth-card animate-slide-up">
+            <div class="auth-header text-center">
+                <h2>Get Started Free</h2>
+                <p class="text-muted">Create a secure profile to start chatting.</p>
+            </div>
+            
+            <form action="{{ url_for('auth.register') }}" method="POST" class="auth-form">
+                <div class="input-group">
+                    <label for="username"><i class="fa-solid fa-user"></i> Choose Username</label>
+                    <input type="text" id="username" name="username" placeholder="johndoe" required class="glass">
+                </div>
+
+                <div class="input-group">
+                    <label for="email"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="you@example.com" required class="glass">
+                </div>
+
+                <div class="input-group">
+                    <label for="password"><i class="fa-solid fa-lock"></i> Account Password</label>
+                    <input type="password" id="password" name="password" placeholder="Min. 8 characters" required class="glass">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full btn-lg">Create Account</button>
+            </form>
+
+            <div class="auth-footer text-center">
+                <p>Already have an account? <a href="/login" class="accent-link">Sign In</a></p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

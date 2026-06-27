@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard — Abdullah AI{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="/static/css/dashboard.css">
+{% endblock %}
+
+{% block content %}
+<section class="section dashboard-section">
+    <div class="dashboard-container">
+        <!-- Dashboard Top Header Greeting -->
+        <div class="dashboard-header animate-fade-in">
+            <h2>Welcome back, <span class="gradient-text">{{ current_user.username }}</span> 👋</h2>
+            <p class="text-muted">Here is your session activity overview and usage statistics.</p>
+        </div>
+
+        <!-- Metrics Stats Cards Grid -->
+        <div class="metrics-grid animate-slide-up">
+            <div class="metric-card glass">
+                <div class="metric-icon"><i class="fa-solid fa-message"></i></div>
+                <div class="metric-data">
+                    <span class="value">{{ usage.messages_count or 0 }}</span>
+                    <span class="label">Messages Sent</span>
+                </div>
+            </div>
+
+            <div class="metric-card glass">
+                <div class="metric-icon"><i class="fa-solid fa-coins"></i></div>
+                <div class="metric-data">
+                    <span class="value">{{ usage.tokens_total or 0 }}</span>
+                    <span class="label">Approx. Tokens Used</span>
+                </div>
+            </div>
+
+            <div class="metric-card glass">
+                <div class="metric-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="metric-data">
+                    <span class="value">
+                        {% if usage.last_active %}
+                            {{ usage.last_active.strftime('%b %d, %H:%M') }}
+                        {% else %}
+                            Never
+                        {% endif %}
+                    </span>
+                    <span class="label">Last Session Activity</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dynamic Quick Launcher Section -->
+        <div class="dashboard-actions animate-slide-up mt-4">
+            <div class="launcher-card glass">
+                <div class="launcher-details">
+                    <h3>Abdullah AI Workspace</h3>
+                    <p>Enter our interactive, responsive workspace equipped with math solvers, code highlight modules, voice control, and markdown rendering engines.</p>
+                </div>
+                <div class="launcher-btn-wrap">
+                    <a href="/chat" class="btn btn-primary btn-lg"><i class="fa-solid fa-comments"></i> Start Chatting</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Prompt Quickview Panel -->
+        <div class="dashboard-row animate-slide-up mt-4">
+            <div class="quickview-card glass">
+                <h3><i class="fa-solid fa-gears"></i> Current System Configurations</h3>
+                <div class="config-table-wrap">
+                    <table class="config-table">
+                        <thead>
+                            <tr>
+                                <th>Option</th>
+                                <th>Active Setup</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Active LLM Model</td>
+                                <td><code class="accent-badge">{{ current_user.settings.ai_model if current_user.settings else 'gpt-4o' }}</code></td>
+                            </tr>
+                            <tr>
+                                <td>API Key Type</td>
+                                <td>
+                                    {% if current_user.settings and current_user.settings.openai_key %}
+                                        <span class="status-indicator green"></span> Custom User Key
+                                    {% else %}
+                                        <span class="status-indicator yellow"></span> SaaS Key / Local Fallback active
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>System Persona Instructions</td>
+                                <td class="truncate-text">{{ current_user.settings.system_prompt if current_user.settings else 'Default system persona' }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

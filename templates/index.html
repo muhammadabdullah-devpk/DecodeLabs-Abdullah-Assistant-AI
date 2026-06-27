@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}Abdullah Assistant AI — Your Personal AI Assistant{% endblock %}
+
+{% block content %}
+<!-- SaaS Hero Section -->
+<section class="hero-section">
+    <div class="hero-content text-center">
+        <div class="badge glass">
+            <span class="pulse-icon"></span>
+            <span>Powered by Google Gemini</span>
+        </div>
+        <h1 class="hero-title animate-fade-in">
+            Abdullah Assistant AI<br>
+            <span class="gradient-text">Your Personal AI Assistant</span>
+        </h1>
+        <p class="hero-subtitle animate-slide-up">
+            An advanced, responsive AI workspace powered by Google Gemini API with smart context reasoning, local fallback systems, and premium glassmorphic UI.
+        </p>
+        <div class="hero-buttons animate-fade-in">
+            {% if current_user.is_authenticated %}
+                <a href="/chat" class="btn btn-primary btn-lg"><i class="fa-solid fa-comments"></i> Enter Chat Console</a>
+                <a href="/dashboard" class="btn btn-outline glass btn-lg">View Stats</a>
+            {% else %}
+                <a href="/register" class="btn btn-primary btn-lg">Get Started Free</a>
+                <a href="/login" class="btn btn-outline glass btn-lg">Sign In</a>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Floating Dashboard Preview Frame -->
+    <div class="hero-preview-wrapper animate-slide-up">
+        <div class="preview-frame glass">
+            <div class="preview-header">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="title">Abdullah AI Chat Console</span>
+            </div>
+            <div class="preview-body">
+                <div class="chat-bubble user">Write a clean Python Flask route.</div>
+                <div class="chat-bubble bot">
+                    <pre><code class="language-python">@app.route('/api/data')
+def get_data():
+    return {"status": "success", "data": [1, 2, 3]}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Grid -->
+<section class="section features-section" id="features">
+    <div class="section-header text-center">
+        <h2 class="section-title">Built for Performance & Scale</h2>
+        <p class="section-subtitle">Experience features optimized for recruitment portfolios and enterprise demos.</p>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-card glass">
+            <div class="feature-icon"><i class="fa-solid fa-brain"></i></div>
+            <h3>Intelligent Context Memory</h3>
+            <p>Remembers user profile parameters, name tags, and past conversational context recursively throughout active chat sessions.</p>
+        </div>
+        
+        <div class="feature-card glass">
+            <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3>Smart Local Fallback</h3>
+            <p>API Offline? Our contextual pattern engine matches math tasks, programming prompts, and writing queries immediately.</p>
+        </div>
+        
+        <div class="feature-card glass">
+            <div class="feature-icon"><i class="fa-solid fa-code"></i></div>
+            <h3>Code Snippet Parser</h3>
+            <p>Renders syntax blocks dynamically with click-to-copy handlers and markdown syntax for CSS, JS, SQL, HTML, and Python.</p>
+        </div>
+
+        <div class="feature-card glass">
+            <div class="feature-icon"><i class="fa-solid fa-microphone"></i></div>
+            <h3>Voice Input & Output</h3>
+            <p>Hands-free voice recognition parsing and dynamic speech synthesis to read assistant responses aloud in real-time.</p>
+        </div>
+
+        <div class="feature-card glass">
+            <div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <h3>API Usage Statistics</h3>
+            <p>Monitor messages dispatched, current session timings, and token metrics visualised through your analytics console dashboard.</p>
+        </div>
+
+        <div class="feature-card glass">
+            <div class="feature-icon"><i class="fa-solid fa-file-export"></i></div>
+            <h3>Universal Data Export</h3>
+            <p>Download conversation transcripts locally as formatted Markdown text, structural JSON files, or PDF records with one click.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Tiers -->
+<section class="section pricing-section" id="pricing">
+    <div class="section-header text-center">
+        <h2 class="section-title">Pricing & Subscriptions</h2>
+        <p class="section-subtitle">Flexible plans to showcase advanced database integration features.</p>
+    </div>
+
+    <div class="pricing-grid">
+        <div class="pricing-card glass">
+            <h4>Free Plan</h4>
+            <div class="price">$0<span>/month</span></div>
+            <p class="pricing-desc">Perfect for testing the local engine and rule capabilities.</p>
+            <ul class="pricing-list">
+                <li><i class="fa-solid fa-check"></i> Standard Intent Matcher</li>
+                <li><i class="fa-solid fa-check"></i> 10 Chats Active Limit</li>
+                <li><i class="fa-solid fa-check"></i> Profile Customizer</li>
+                <li><i class="fa-solid fa-xmark error"></i> OpenAI Custom Engine</li>
+            </ul>
+            <a href="/register" class="btn btn-outline glass btn-full">Get Started</a>
+        </div>
+
+        <div class="pricing-card glass popular">
+            <div class="popular-tag">Most Popular</div>
+            <h4>Pro Tier</h4>
+            <div class="price">$19<span>/month</span></div>
+            <p class="pricing-desc">For full AI SaaS usage with GPT model settings and prompt parameters.</p>
+            <ul class="pricing-list">
+                <li><i class="fa-solid fa-check"></i> Everything in Free</li>
+                <li><i class="fa-solid fa-check"></i> Gemini API Streaming</li>
+                <li><i class="fa-solid fa-check"></i> Custom API Key Upload</li>
+                <li><i class="fa-solid fa-check"></i> Custom System Prompts</li>
+            </ul>
+            <a href="/register" class="btn btn-primary btn-full">Upgrade Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="main-footer glass">
+    <div class="footer-content" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; padding: 2rem 0;">
+        <div class="footer-info">
+            <h4 style="margin: 0; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.4rem;">Abdullah Assistant AI</h4>
+            <span style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">DecodeLabs Project</span>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Your Personal AI Assistant — Powered by Google Gemini</p>
+        </div>
+        <div class="footer-links-vertical" style="line-height: 1.6;">
+            <strong>Enhanced & Developed by Muhammad Abdullah</strong>
+            <p class="role-desc" style="font-size: 0.85rem; color: var(--text-muted); margin: 0.2rem 0 0.8rem 0;">AI Engineer | Python Developer | Machine Learning Enthusiast</p>
+            <div class="developer-info-grid" style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.9rem;">
+                <span><strong>Developer Name:</strong> Muhammad Abdullah</span>
+                <span><strong>GitHub:</strong> <a href="https://github.com/muhammadabdullah-devpk" target="_blank" style="color: var(--accent); text-decoration: none;">https://github.com/muhammadabdullah-devpk</a></span>
+                <span><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/muhammad-abdullah-devpk" target="_blank" style="color: var(--accent); text-decoration: none;">https://linkedin.com/in/muhammad-abdullah-devpk</a></span>
+                <span><strong>Email:</strong> <a href="mailto:meharabdullah4337@gmail.com" style="color: var(--accent); text-decoration: none;">meharabdullah4337@gmail.com</a></span>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom" style="text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
+        <p>&copy; 2026 Abdullah Assistant AI. All rights reserved.</p>
+    </div>
+</footer>
+{% endblock %}
+
+{% block extra_js %}
+<script src="/static/js/main.js"></script>
+{% endblock %}

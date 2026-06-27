@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}About Abdullah AI — Development Team{% endblock %}
+
+{% block content %}
+<section class="section about-section">
+    <div class="container-sm">
+        <div class="glass card-pad animate-slide-up">
+            <h1 class="accent-text mb-2">About Abdullah AI</h1>
+            <p class="lead">
+                Abdullah Assistant AI is a premium SaaS AI chatbot console that showcases modern Flask backend structure, robust SQLite models, and Google Gemini API streaming integration.
+            </p>
+            
+            <hr class="separator my-4">
+
+            <h3 class="mb-3">🧠 Technical Architecture</h3>
+            <p>
+                The application follows clean coding patterns separating services and data persistence layers:
+            </p>
+            <ul class="styled-list mb-4">
+                <li><strong>Flask Blueprints</strong>: Compartmentalizes views for landing page, session authentication, AJAX APIs, and streaming response generator layers.</li>
+                <li><strong>Database Persistence</strong>: Utilizes SQLAlchemy models for secure user session hashes, pinning states, and messaging transcripts storage.</li>
+                <li><strong>Hybrid Generation Pipeline</strong>: Dynamically coordinates standard Google Gemini API client streams with local intent regex fallbacks in case of credentials blockages or connection drops.</li>
+            </ul>
+
+            <h3 class="mb-3">👨‍💻 About Developer</h3>
+            <div class="developer-profile glass" style="padding: 1.5rem; border-radius: var(--border-radius); line-height: 1.6;">
+                <div class="dev-details">
+                    <h4 style="margin: 0; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 1.3rem;">Muhammad Abdullah</h4>
+                    <p class="role text-muted" style="font-size: 0.85rem; margin-bottom: 1rem;">AI Engineer | Python Developer | Machine Learning Enthusiast</p>
+                    
+                    <div class="branding-profile-details" style="display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.95rem; margin-bottom: 1rem;">
+                        <div><strong>Project Type:</strong> DecodeLabs Project</div>
+                        <div><strong>Project Name:</strong> Abdullah Assistant AI</div>
+                        <div><strong>Contribution:</strong> Enhanced & Developed by Muhammad Abdullah</div>
+                        <div><strong>Developer Name:</strong> Muhammad Abdullah</div>
+                        <div><strong>GitHub:</strong> <a href="https://github.com/muhammadabdullah-devpk" target="_blank" style="color: var(--accent); text-decoration: none;">https://github.com/muhammadabdullah-devpk</a></div>
+                        <div><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/muhammad-abdullah-devpk" target="_blank" style="color: var(--accent); text-decoration: none;">https://linkedin.com/in/muhammad-abdullah-devpk</a></div>
+                        <div><strong>Email:</strong> <a href="mailto:meharabdullah4337@gmail.com" style="color: var(--accent); text-decoration: none;">meharabdullah4337@gmail.com</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

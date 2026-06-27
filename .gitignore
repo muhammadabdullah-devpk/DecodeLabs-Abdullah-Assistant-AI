@@ -1,0 +1,14 @@
+# Environment secrets
+.env
+
+# Databases
+instance/
+*.db
+
+# Caches and temporary files
+__pycache__/
+*.pyc
+.pytest_cache/
+.vscode/
+.idea/
+logs/

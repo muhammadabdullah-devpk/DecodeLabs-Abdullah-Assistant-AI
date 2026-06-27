@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}System Settings — Abdullah AI{% endblock %}
+
+{% block content %}
+<section class="section settings-section">
+    <div class="container-sm">
+        <div class="glass card-pad animate-slide-up">
+            <h2 class="accent-text mb-2"><i class="fa-solid fa-sliders"></i> SaaS Settings Console</h2>
+            <p class="text-muted">Customize API integrations, LLM models, and default agent system prompts.</p>
+            
+            <hr class="separator my-4">
+
+            <form id="settings-form" class="settings-form">
+                <!-- Theme Option -->
+                <div class="input-group">
+                    <label for="theme-select"><i class="fa-solid fa-circle-half-stroke"></i> Color Theme</label>
+                    <select id="theme-select" name="theme" class="glass">
+                        <option value="dark" {% if settings.theme == 'dark' %}selected{% endif %}>Dark Mode (Recommended)</option>
+                        <option value="light" {% if settings.theme == 'light' %}selected{% endif %}>Light Mode</option>
+                    </select>
+                </div>
+
+                <!-- Custom Gemini API Key Option -->
+                <div class="input-group">
+                    <label for="gemini_key"><i class="fa-solid fa-key"></i> Custom Google Gemini API Key (User Override)</label>
+                    <input type="password" id="gemini_key" name="gemini_key" value="{{ settings.gemini_key or '' }}" placeholder="AIzaSy..." class="glass">
+                    <small class="form-text text-muted">
+                        Leave blank to run on the system's global key or trigger the local fallback engine.
+                    </small>
+                </div>
+
+                <!-- AI model Select option -->
+                <div class="input-group">
+                    <label for="ai_model"><i class="fa-solid fa-microchip"></i> Active AI Model</label>
+                    <select id="ai_model" name="ai_model" class="glass">
+                        <option value="models/gemini-2.5-flash" {% if settings.ai_model == 'models/gemini-2.5-flash' %}selected{% endif %}>gemini-2.5-flash (Default, high speed & lightweight)</option>
+                        <option value="models/gemini-2.5-pro" {% if settings.ai_model == 'models/gemini-2.5-pro' %}selected{% endif %}>gemini-2.5-pro (High reasoning & multi-turn complexity)</option>
+                    </select>
+                </div>
+
+                <!-- Custom System Instructions -->
+                <div class="input-group">
+                    <label for="system_prompt"><i class="fa-solid fa-robot"></i> Custom System Prompt Instructions</label>
+                    <textarea id="system_prompt" name="system_prompt" rows="4" class="glass" placeholder="You are Abdullah Assistant AI, a helpful agent...">{{ settings.system_prompt }}</textarea>
+                    <small class="form-text text-muted">
+                        Define instructions that program the model's persona (role, response formatting rules, etc.).
+                    </small>
+                </div>
+
+                <div class="form-actions mt-4">
+                    <button type="submit" id="save-settings-btn" class="btn btn-primary btn-lg">
+                        <i class="fa-solid fa-floppy-disk"></i> Save System Settings
+                    </button>
+                    <span id="save-status" class="status-msg hidden ml-3"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.getElementById("settings-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        const saveBtn = document.getElementById("save-settings-btn");
+        const statusSpan = document.getElementById("save-status");
+        
+        saveBtn.disabled = true;
+        saveBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Saving...';
+        
+        const data = {
+            theme: document.getElementById("theme-select").value,
+            gemini_key: document.getElementById("gemini_key").value,
+            ai_model: document.getElementById("ai_model").value,
+            system_prompt: document.getElementById("system_prompt").value
+        };
+        
+        fetch("/api/settings", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) throw new Error("Settings save failed");
+            return response.json();
+        })
+        .then(res => {
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Save System Settings';
+            
+            statusSpan.className = "status-msg success-text";
+            statusSpan.innerText = "Settings updated successfully!";
+            statusSpan.classList.remove("hidden");
+            
+            // Adjust theme in frontend immediately
+            document.documentElement.setAttribute("data-theme", data.theme);
+            localStorage.setItem("theme", data.theme);
+            
+            setTimeout(() => {
+                statusSpan.classList.add("hidden");
+            }, 3000);
+        })
+        .catch(err => {
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i> Save System Settings';
+            
+            statusSpan.className = "status-msg error-text";
+            statusSpan.innerText = "Error: Could not save configuration.";
+            statusSpan.classList.remove("hidden");
+        });
+    });
+</script>
+{% endblock %}

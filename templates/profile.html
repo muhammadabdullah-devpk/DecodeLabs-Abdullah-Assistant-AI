@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}User Profile — Abdullah AI{% endblock %}
+
+{% block content %}
+<section class="section profile-section">
+    <div class="container-sm">
+        <div class="glass card-pad animate-slide-up">
+            <div class="card-header-with-avatar mb-4">
+                <img src="{{ current_user.avatar_url or '/static/img/avatar-default.png' }}" alt="Avatar" class="avatar-lg">
+                <div class="user-meta">
+                    <h2>{{ current_user.username }}</h2>
+                    <p class="text-muted">Member since {{ current_user.created_at.strftime('%B %d, %Y') }}</p>
+                </div>
+            </div>
+
+            <hr class="separator my-4">
+
+            <form action="{{ url_for('auth.update_profile') }}" method="POST" class="profile-form">
+                <div class="input-group">
+                    <label for="username"><i class="fa-solid fa-user"></i> Username</label>
+                    <input type="text" id="username" name="username" value="{{ current_user.username }}" required class="glass">
+                </div>
+
+                <div class="input-group">
+                    <label for="email"><i class="fa-solid fa-envelope"></i> Email Address</label>
+                    <input type="email" id="email" name="email" value="{{ current_user.email }}" required class="glass">
+                </div>
+
+                <div class="input-group">
+                    <label for="avatar_url"><i class="fa-solid fa-image"></i> Avatar URL</label>
+                    <input type="text" id="avatar_url" name="avatar_url" value="{{ current_user.avatar_url or '' }}" placeholder="https://example.com/avatar.png" class="glass">
+                </div>
+
+                <div class="input-group">
+                    <label for="new_password"><i class="fa-solid fa-key"></i> New Password (Leave blank to keep current)</label>
+                    <input type="password" id="new_password" name="new_password" placeholder="••••••••" class="glass">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg mt-3"><i class="fa-solid fa-floppy-disk"></i> Save Profile Details</button>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
