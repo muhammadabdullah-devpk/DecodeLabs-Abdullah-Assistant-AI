@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/muhammadabdullah-devpk/Abdullah-Assistant-AI/main/static/img/avatar-default.png" width="120" height="120" style="border-radius: 50%; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.45); border: 3px solid #6366f1;" alt="Abdullah Assistant AI Logo">
+  <img src="https://raw.githubusercontent.com/muhammadabdullah-devpk/DecodeLabs-Abdullah-Assistant-AI/main/static/img/avatar-default.png" width="120" height="120" style="border-radius: 50%; box-shadow: 0 8px 24px rgba(99, 102, 241, 0.45); border: 3px solid #6366f1;" alt="Abdullah Assistant AI Logo">
   
   <h1 style="font-weight: 800; font-size: 2.5rem; margin-top: 15px; background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Abdullah Assistant AI</h1>
   
@@ -213,7 +213,7 @@ If the Gemini API key is missing or rate-limited (429), the chatbot drops down t
 <div style="padding: 24px; border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 16px; background: linear-gradient(135deg, rgba(10,11,16,0.95) 0%, rgba(18,20,29,0.95) 100%); margin: 20px 0; box-shadow: var(--shadow-premium);">
   
   <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
-    <img src="https://raw.githubusercontent.com/muhammadabdullah-devpk/Abdullah-Assistant-AI/main/static/img/avatar-default.png" width="90" height="90" style="border-radius: 50%; border: 2px solid #a855f7;" alt="Developer Avatar">
+    <img src="https://raw.githubusercontent.com/muhammadabdullah-devpk/DecodeLabs-Abdullah-Assistant-AI/main/static/img/avatar-default.png" width="90" height="90" style="border-radius: 50%; border: 2px solid #a855f7;" alt="Developer Avatar">
     <div>
       <h3 style="margin: 0; font-size: 1.4rem; color: #fff;">Muhammad Abdullah</h3>
       <p style="margin: 3px 0 10px 0; color: #a855f7; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">AI Engineer | Python Developer | Machine Learning Enthusiast</p>
